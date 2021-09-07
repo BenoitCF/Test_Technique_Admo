@@ -77,7 +77,7 @@ else
   echo "Error, there's no connection"
 fi
 
-#initialisation d'une variable erreur pour envoyer un mail 
+#initialisation d'une variable erreur pour transmettre l'erreur à l'admin 
 r=0 
 
 ## après avoir pingé une premiere fois on fais les tests pour envoyer le fichier 
