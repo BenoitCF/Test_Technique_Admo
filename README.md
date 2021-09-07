@@ -15,3 +15,6 @@ Voila le fruit de mon travail j'espère qu'il sera à la hauteur de vos attentes
 
 J'ai donc apporté des modifications au code j'ai pull un nouveau fichier Test. J'ai ajouté une variable qui permet de vérifier l'état du test pour savoir si il faut envoyer un mail ou non à l'admin. 
 J'espère que les changements seront apprécier.
+
+J'ai amélioré les conditions d'entrée et de sortie de la boucle. J'ai mis à jour la syntaxe qui mettait le script en defaut. 
+J'ai aussi rajouter la gestion de l'envoie du mail dans un if. 
