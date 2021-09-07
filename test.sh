@@ -77,33 +77,35 @@ else
   echo "Error, there's no connection"
 fi
 
-#initialisation d'une variable erreur pour transmettre l'erreur à l'admin 
+#initialisation d'une variable erreur pour transmettre l'erreur 
 r=0 
 
 ## après avoir pingé une premiere fois on fais les tests pour envoyer le fichier 
 
-for ((i=0 ; $i<50 ; i++)) 
+for ((i=1 ; $i<51 ; i++)) 
     do 
-        if [ ping -W 1 8.8.8.8 &>/dev/null ]; then
+        if ping -q -c 1 8.8.8.8 >/dev/null ; then
             scp $backup_file 8.8.8.8:/remote/directory
             echo "Host Found, File transfered"
-            $r=1 
+            r=1 
             break 
-          else 
-            sleep 30 
-            echo "Ping Fail";
-            $i= $((i+1));
-            $r=0
-            continue 
+            else 
+                echo "not working" 
+                sleep 30 
+                echo "Ping Fail";
+                r=0
+                echo $i
+                if [ "$i" -eq 50 -a "$r" -eq 0 ];
+                    then 
+                    #il faut que un utilitaire de mail soit installé sur la machine précedemment 
+                    #on pourra alors utilisé la commande mail comme suis
+                    mail -s "Alert message" bcf97113@gmail.com <<< "The host was not found, transfer abort"
+                    echo "Admin alerte, mail envoye"
+                fi 
         fi  
+    
 done
 
-if [ $r = 0 ] 
-  then 
-  #il faut que un utilitaire de mail soit installé sur la machine précedemment 
-  #on pourra alors utilisé la commande mail comme suis
-  mail -s "Alert message" bcf97113@gmail.com <<< "The host was not found, transfer abort"
-fi 
 
 exit 0  
 
